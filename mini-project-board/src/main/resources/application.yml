@@ -3,7 +3,7 @@ management.endpoints.web.exposure.include: "*"
 
 logging:
   level:
-    com.example.miniprojectboard: debug
+    com.fastcampus.projectboard: debug
     org.springframework.web.servlet: debug
     org.hibernate.type.descriptor.sql.BasicBinder: trace
 
@@ -12,7 +12,7 @@ spring:
     url: jdbc:mysql://localhost:3306/board
     username: limsanggyu
     password: lgo!12qwopqw12
-    driver-class-name:
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     defer-datasource-initialization: true
     hibernate.ddl-auto: create
