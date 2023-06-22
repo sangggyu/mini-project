@@ -15,7 +15,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 @RepositoryRestResource
 public interface ArticleCommentRepository extends
         JpaRepository<Article, Long>,
-        QuerydslPredicateExecutor<Article>,
+        QuerydslPredicateExecutor<ArticleComment>,
         QuerydslBinderCustomizer<QArticleComment> {
     @Override
     default void customize(QuerydslBindings bindings, QArticleComment root) {
