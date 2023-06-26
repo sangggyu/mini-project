@@ -5,6 +5,7 @@ import com.example.miniprojectboard.domain.UserAccount;
 import java.time.LocalDateTime;
 
 public record UserAccountDto(
+
         String userId,
         String userPassword,
         String email,
