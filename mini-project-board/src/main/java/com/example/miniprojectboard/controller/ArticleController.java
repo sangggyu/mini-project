@@ -2,7 +2,7 @@ package com.example.miniprojectboard.controller;
 
 import com.example.miniprojectboard.domain.type.SearchType;
 import com.example.miniprojectboard.dto.response.ArticleResponse;
-import com.example.miniprojectboard.dto.response.ArticleWithCommentResponse;
+import com.example.miniprojectboard.dto.response.ArticleWithCommentsResponse;
 import com.example.miniprojectboard.service.ArticleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -22,6 +22,14 @@ public class ArticleController {
 
     private final ArticleService articleService;
 
+    /**
+     * 게시글 페이지
+     * @param searchType
+     * @param searchValue
+     * @param pageable
+     * @param map
+     * @return
+     */
     @GetMapping
     public String articles(
             @RequestParam(required = false) SearchType searchType,
@@ -34,11 +42,17 @@ public class ArticleController {
         return "articles/index";
     }
 
+    /**
+     * 게시글 상세페이지
+     * @param articleId
+     * @param map
+     * @return
+     */
     @GetMapping("/{articleId}")
     public String article(@PathVariable Long articleId, ModelMap map) {
-        ArticleWithCommentResponse article = ArticleWithCommentResponse.from(articleService.getArticle(articleId));
+        ArticleWithCommentsResponse article = ArticleWithCommentsResponse.from(articleService.getArticle(articleId));
         map.addAttribute("article", article);
-        map.addAttribute("articleComments", article.articleCommentResponses());
+        map.addAttribute("articleComments", article.articleCommentResponse());
 
         return "articles/detail";
     }
