@@ -10,7 +10,7 @@ import java.util.Objects;
 @Getter
 @ToString(callSuper = true)
 @Table(indexes = {
-//        @Index(columnList = "userId"),
+//        @Index(columnList = "userID", unique = true),
         @Index(columnList = "email", unique = true),
         @Index(columnList = "createdAt"),
         @Index(columnList = "createdBy")
@@ -18,7 +18,7 @@ import java.util.Objects;
 @Entity
 public class UserAccount extends AuditingFields {
     @Id
-    @Column(name = "user_id")  // 컬럼 이름 설정
+    @Column(length = 50)
     private String userId;
 
     @Setter @Column(nullable = false) private String userPassword;
