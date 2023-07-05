@@ -13,7 +13,7 @@ public class ArticleRepositoryCustomImpl extends QuerydslRepositorySupport imple
 
 
     @Override
-    public List<String> findAllDistincHashtag() {
+    public List<String> findAllDistinctHashtags() {
         QArticle article = QArticle.article;
 
         return from(article)
