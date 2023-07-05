@@ -40,6 +40,8 @@ public class UserAccount extends AuditingFields {
         this.modifiedBy = createdBy;
     }
 
+
+
     public static UserAccount of(String userId, String userPassword, String email, String nickname, String memo) {
         return UserAccount.of(userId, userPassword, email, nickname, memo, null);
     }
