@@ -10,4 +10,6 @@ public class MiniProjectAdminApplication {
         SpringApplication.run(MiniProjectAdminApplication.class, args);
     }
 
+
+
 }
