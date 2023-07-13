@@ -6,18 +6,12 @@
 # insert into user_account (user_id, user_password, nickname, email, memo, created_at, created_by, modified_at, modified_by) values
 #     ('gyu', '{noop}asdf1234', 'Uno2', 'lim2@email.com', 'I am Uno2.', now(), 'uno2', now(), 'uno2')
 # ;
-#
+# #
 # -- 123 게시글
 # insert into article (user_id, title, content, hashtag, created_by, modified_by, created_at, modified_at) values
-#                                                                                                              ('uno2', 'Quisque ut erat.', 'Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.
 #
-# Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.
-#
-# Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.', '#pink', 'Kamilah', 'Murial', '2021-05-30 23:53:46', '2021-03-10 08:48:50'),
 #                                                                                                              ('uno2', 'Morbi ut odio.', 'Phasellus in felis. Donec semper sapien a libero. Nam dui.
-#
 # Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius.
-#
 # Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.', '#purple', 'Arv', 'Keelby', '2021-05-06 11:51:24', '2021-05-23 08:34:54'),
 #                                                                                                              ('uno2', 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio.', 'Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.', '#purple', 'Adams', 'Thalia', '2021-08-13 08:32:22', '2021-04-02 02:58:19'),
 #                                                                                                              ('uno', 'Fusce posuere felis sed lacus.', 'Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.', '#mauv', 'Johny', 'Constantin', '2021-09-05 04:28:16', '2021-10-31 17:46:08'),
@@ -72,7 +66,7 @@
 #                                                                                                              ('uno', 'Nullam varius.', 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
 #
 # Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.
-#
+# You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus '' at line 3d
 # Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.', null, 'Sheila-kathryn', 'Lil', '2021-06-11 13:47:12', '2021-11-30 13:45:21'),
 #                                                                                                              ('uno', 'Sed ante.', 'Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.
 #
@@ -188,7 +182,7 @@
 #                                                                                                              ('uno', 'Nulla facilisi.', 'Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.
 #
 # Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.', '#violet', 'Alfons', 'Meredith', '2021-11-30 09:26:07', '2021-05-25 03:28:14'),
-#                                                                                                              ('uno', 'Nunc nisl.', 'Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.
+#                                                                                                              ('uno', 'Nunc nisl.', 'Duis consequa Donec ut dolor.a rhoncus.
 #
 # Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.
 #
