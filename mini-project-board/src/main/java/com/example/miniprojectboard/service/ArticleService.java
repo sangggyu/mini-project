@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.Arrays;
 import java.util.List;
 
 @Slf4j
@@ -22,6 +23,7 @@ import java.util.List;
 @Transactional
 @Service
 public class ArticleService {
+
     private final ArticleRepository articleRepository;
     private final UserAccountRepository userAccountRepository;
 
@@ -36,9 +38,12 @@ public class ArticleService {
             case CONTENT -> articleRepository.findByContentContaining(searchKeyword, pageable).map(ArticleDto::from);
             case ID -> articleRepository.findByUserAccount_UserIdContaining(searchKeyword, pageable).map(ArticleDto::from);
             case NICKNAME -> articleRepository.findByUserAccount_NicknameContaining(searchKeyword, pageable).map(ArticleDto::from);
-            case HASHTAG -> articleRepository.findByHashtag("#" + searchKeyword, pageable).map(ArticleDto::from);
+            case HASHTAG -> articleRepository.findByHashtagNames(
+                            Arrays.stream(searchKeyword.split(" ")).toList(),
+                            pageable
+                    )
+                    .map(ArticleDto::from);
         };
-
     }
 
     @Transactional(readOnly = true)
@@ -66,13 +71,11 @@ public class ArticleService {
             UserAccount userAccount = userAccountRepository.getReferenceById(dto.userAccountDto().userId());
 
             if (article.getUserAccount().equals(userAccount)) {
-                if (dto.title() != null) {article.setTitle(dto.title());}
-                if (dto.content() != null) {article.setContent(dto.content());}
-                article.setHashtag(dto.hashtag());
+                if (dto.title() != null) { article.setTitle(dto.title()); }
+                if (dto.content() != null) { article.setContent(dto.content()); }
             }
-        } catch (EntityNotFoundException e ) {
-            log.warn("게시글 업데이트 실패. 게시글을 수정하는데 필요한 정보를 찾을 수 수 없습니다. - {}",
-                    e.getLocalizedMessage());
+        } catch (EntityNotFoundException e) {
+            log.warn("게시글 업데이트 실패. 게시글을 수정하는데 필요한 정보를 찾을 수 없습니다 - {}", e.getLocalizedMessage());
         }
     }
 
@@ -80,19 +83,21 @@ public class ArticleService {
         articleRepository.deleteByIdAndUserAccount_UserId(articleId, userId);
     }
 
-    public Long getArticleCount() {
+    public long getArticleCount() {
         return articleRepository.count();
     }
+
     @Transactional(readOnly = true)
     public Page<ArticleDto> searchArticlesViaHashtag(String hashtag, Pageable pageable) {
         if (hashtag == null || hashtag.isBlank()) {
             return Page.empty(pageable);
         }
 
-        return articleRepository.findByHashtag(hashtag, pageable).map(ArticleDto::from);
+        return articleRepository.findByHashtagNames(null, pageable).map(ArticleDto::from);
     }
 
     public List<String> getHashtags() {
         return articleRepository.findAllDistinctHashtags();
     }
+
 }
