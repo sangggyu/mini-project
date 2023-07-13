@@ -1,6 +1,7 @@
 package com.example.miniprojectboard.dto.response;
 
 import com.example.miniprojectboard.dto.ArticleWithCommentsDto;
+import com.example.miniprojectboard.dto.HashtagDto;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -12,16 +13,16 @@ public record ArticleWithCommentsResponse(
         Long id,
         String title,
         String content,
-        String hashtag,
+        Set<String> hashtags,
         LocalDateTime createdAt,
         String email,
         String nickname,
         String userId,
-        Set<ArticleCommentsResponse> articleCommentsResponse
-) implements Serializable {
+        Set<ArticleCommentResponse> articleCommentsResponse
+) {
 
-    public static ArticleWithCommentsResponse of(Long id, String title, String content, String hashtag, LocalDateTime createdAt, String email, String nickname,String userId, Set<ArticleCommentsResponse> articleCommentResponses) {
-        return new ArticleWithCommentsResponse(id, title, content, hashtag, createdAt, email, nickname, userId, articleCommentResponses);
+    public static ArticleWithCommentsResponse of(Long id, String title, String content, Set<String> hashtags, LocalDateTime createdAt, String email, String nickname, String userId, Set<ArticleCommentResponse> articleCommentResponses) {
+        return new ArticleWithCommentsResponse(id, title, content, hashtags, createdAt, email, nickname, userId, articleCommentResponses);
     }
 
     public static ArticleWithCommentsResponse from(ArticleWithCommentsDto dto) {
@@ -34,13 +35,16 @@ public record ArticleWithCommentsResponse(
                 dto.id(),
                 dto.title(),
                 dto.content(),
-                dto.hashtag(),
+                dto.hashtagDtos().stream()
+                        .map(HashtagDto::hashtagName)
+                        .collect(Collectors.toUnmodifiableSet())
+                ,
                 dto.createdAt(),
                 dto.userAccountDto().email(),
                 nickname,
                 dto.userAccountDto().userId(),
                 dto.articleCommentDtos().stream()
-                        .map(ArticleCommentsResponse::from)
+                        .map(ArticleCommentResponse::from)
                         .collect(Collectors.toCollection(LinkedHashSet::new))
         );
     }
