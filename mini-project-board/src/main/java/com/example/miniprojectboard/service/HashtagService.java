@@ -2,17 +2,24 @@ package com.example.miniprojectboard.service;
 
 import com.example.miniprojectboard.domain.Hashtag;
 import com.example.miniprojectboard.repository.HashtagRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
+@Transactional
+@RequiredArgsConstructor
 @Service
 public class HashtagService {
 
-    private HashtagRepository hashtagRepository;
+    private final HashtagRepository hashtagRepository;
+    @Transactional(readOnly = true)
+    public Set<Hashtag> findHashtagsByNames(Set<String> hashtagNames) {
+        return new HashSet<>(hashtagRepository.findByHashtagNameIn(hashtagNames));
+    }
     public Set<String> parseHashtagNames(String content) {
         if (content == null) {
             return Set.of();
@@ -27,10 +34,6 @@ public class HashtagService {
         }
 
         return Set.copyOf(result);
-    }
-
-    public Set<Hashtag> findHashtagsByNames(Set<String> hashtagNames) {
-        return new HashSet<>(hashtagRepository.findByHashtagNameIn(hashtagNames));
     }
 
     public void deleteHashtagWithoutArticles(Long hashtagId) {
